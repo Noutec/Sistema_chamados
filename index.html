@@ -16,6 +16,7 @@
         <a class="nav-link active" aria-current="page" href="index.html">Todos</a>
         <a class="nav-link text-white" href="active.html">Aguardando atendimento</a>
         <a class="nav-link text-white" href="open.html">Novo chamado</a>
+        <a class="nav-link text-white" href="cadastro.html">Cadastros</a>
       </nav>
     </div>
   </header>
@@ -30,12 +31,47 @@
   <!-- Filtros por status -->
     <nav aria-label="Filtrar chamados por status">
       <ul class="list-unstyled d-flex flex-wrap gap-2 mb-3">
-        <li><a class="btn btn-sm btn-secondary" href="index.html" aria-current="page">Todos</a></li>
-        <li><a class="btn btn-sm btn-outline-danger" href="active.html">2 aguardando atendimento</a></li>
-        <li><a class="btn btn-sm btn-outline-dark" href="in-progress.html">2 em andamento</a></li>
-        <li><a class="btn btn-sm btn-outline-success" href="resolved.html">1 resolvido</a></li>
+        <li><a class="btn btn-sm btn-secondary" href="index.html" aria-current="page"><span id="ind-total">0</span> no total</a></li>
+        <li><a class="btn btn-sm btn-outline-danger" href="active.html"><span data-contador="active">0</span> aguardando atendimento</a></li>
+        <li><a class="btn btn-sm btn-outline-dark" href="in-progress.html"><span data-contador="in-progress">0</span> em andamento</a></li>
+        <li><a class="btn btn-sm btn-outline-success" href="resolved.html"><span data-contador="resolved">0</span> resolvido</a></li>
       </ul>
     </nav>
+    <section class="card border-0 shadow-sm p-3 mb-3" aria-label="Busca e filtros">
+      <div class="row g-3">
+        <div class="col-md-4">
+          <label for="campo-busca" class="form-label">Pesquisar</label>
+          <input id="campo-busca" class="form-control" type="search" placeholder="Número, nome ou problema">
+        </div>
+        <div class="col-sm-4 col-md-3">
+          <label for="filtro-status" class="form-label">Status</label>
+          <select id="filtro-status" class="form-select">
+            <option value="">Todos</option>
+            <option value="Ativo">Aguardando atendimento</option>
+            <option>Em andamento</option>
+            <option>Resolvido</option>
+          </select>
+        </div>
+        <div class="col-sm-4 col-md-3">
+          <label for="filtro-setor" class="form-label">Setor</label>
+          <select id="filtro-setor" class="form-select">
+            <option value="">Todos</option>
+            <option>Financeiro</option>
+            <option>Jurídico</option>
+            <option>Comercial</option>
+            <option>Recursos Humanos</option>
+            <option>Logística</option>
+          </select>
+        </div>
+        <div class="col-sm-4 col-md-2">
+          <label for="ordem-lista" class="form-label">Ordem</label>
+          <select id="ordem-lista" class="form-select">
+            <option value="desc">Maior número</option>
+            <option value="asc">Menor número</option>
+          </select>
+        </div>
+      </div>
+    </section>
   <!-- Tabela de todos os chamados -->
     <p class="small text-secondary mb-2">Se necessário, deslize a tabela horizontalmente para ver todas as colunas.</p>
     <div id="lista" class="card border-0 shadow-sm">
@@ -52,69 +88,19 @@
               <th scope="col" class="text-end">Ações</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody data-status="Ativo">
             <tr id="ativos" class="table-light">
               <th scope="rowgroup" colspan="6">Aguardando atendimento</th>
             </tr>
-            <tr>
-              <th scope="row">#1050</th>
-              <td>João Lima</td>
-              <td>Jurídico</td>
-              <td>Servidor de arquivos</td>
-              <td><span class="badge text-bg-danger">Aguardando atendimento</span></td>
-              <td class="text-end">
-                <a class="btn btn-sm btn-outline-primary text-nowrap" href="details.html#chamado-1050" aria-label="Ver detalhes do chamado #1050">Ver detalhes</a>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">#1047</th>
-              <td>Ana Reis</td>
-              <td>Comercial</td>
-              <td>Notebook Lenovo</td>
-              <td><span class="badge text-bg-danger">Aguardando atendimento</span></td>
-              <td class="text-end">
-                <a class="btn btn-sm btn-outline-primary text-nowrap" href="details.html#chamado-1047" aria-label="Ver detalhes do chamado #1047">Ver detalhes</a>
-              </td>
-            </tr>
           </tbody>
-          <tbody>
+          <tbody data-status="Em andamento">
             <tr id="em-andamento" class="table-light">
               <th scope="rowgroup" colspan="6">Em andamento</th>
             </tr>
-            <tr>
-              <th scope="row">#1042</th>
-              <td>Maria Souza</td>
-              <td>Financeiro</td>
-              <td>Desktop HP</td>
-              <td><span class="badge text-bg-warning">Em andamento</span></td>
-              <td class="text-end">
-                <a class="btn btn-sm btn-outline-primary text-nowrap" href="details.html#chamado-1042" aria-label="Ver detalhes do chamado #1042">Ver detalhes</a>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">#1038</th>
-              <td>Pedro Alves</td>
-              <td>Financeiro</td>
-              <td>Impressora</td>
-              <td><span class="badge text-bg-warning">Em andamento</span></td>
-              <td class="text-end">
-                <a class="btn btn-sm btn-outline-primary text-nowrap" href="details.html#chamado-1038" aria-label="Ver detalhes do chamado #1038">Ver detalhes</a>
-              </td>
-            </tr>
           </tbody>
-          <tbody>
+          <tbody data-status="Resolvido">
             <tr id="resolvidos" class="table-light">
               <th scope="rowgroup" colspan="6">Resolvidos</th>
-            </tr>
-            <tr>
-              <th scope="row">#1020</th>
-              <td>Rita Dias</td>
-              <td>Recursos Humanos</td>
-              <td>Mouse</td>
-              <td><span class="badge text-bg-success">Resolvido</span></td>
-              <td class="text-end">
-                <a class="btn btn-sm btn-outline-primary text-nowrap" href="details.html#chamado-1020" aria-label="Ver detalhes do chamado #1020">Ver detalhes</a>
-              </td>
             </tr>
           </tbody>
         </table>
@@ -123,6 +109,7 @@
   </main>
 
   <footer class="container pb-4 small text-secondary">Renan / João</footer>
+  <script src="js/chamados.js"></script>
   <script src="js/index.js"></script>
 </body>
 </html>
