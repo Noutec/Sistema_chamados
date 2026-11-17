@@ -1,13 +1,17 @@
+// Busca os chamados já guardados.
 const listaChamadosElemento = document.querySelector("#lista-chamados");
 const chamados = JSON.parse(localStorage.getItem("chamados")) || [];
 
+// Mostra apenas os chamados resolvidos.
 function listarPorStatus() {
+    // Limpa a tabela antes de preenchê-la.
     listaChamadosElemento.innerHTML = "";
 
     const filtrados = chamados.filter(function(chamado) {
         return chamado.status === "Resolvido";
     });
 
+    // Cria uma linha para cada chamado encontrado.
     filtrados.forEach(function(chamado) {
         const linha = document.createElement("tr");
 
@@ -29,6 +33,7 @@ function listarPorStatus() {
         const colunaData = document.createElement("td");
         colunaData.textContent = chamado.data;
 
+        // Adiciona o link para ver os detalhes.
         const colunaAcoes = document.createElement("td");
         colunaAcoes.className = "text-end";
 
@@ -43,4 +48,5 @@ function listarPorStatus() {
     });
 }
 
+// Atualiza a lista ao abrir a página.
 listarPorStatus();

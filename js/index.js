@@ -1,3 +1,4 @@
+// Encontra os itens da página principal.
 const listaChamadosElemento = document.querySelector("#lista-chamados");
 const campoBusca = document.querySelector("#campo-busca");
 const filtroStatus = document.querySelector("#filtro-status");
@@ -5,8 +6,10 @@ const filtroSetor = document.querySelector("#filtro-setor");
 const ordemLista = document.querySelector("#ordem-lista");
 const botaoTema = document.querySelector("#btn-tema");
 
+// Carrega os chamados já guardados.
 let chamados = JSON.parse(localStorage.getItem("chamados")) || [];
 
+// Define a prioridade pelo tipo de problema.
 function verificarPrioridade(problema) {
     const texto = problema.toLowerCase();
     if (texto.includes("servidor") || texto.includes("fora do ar") || texto.includes("não liga")) {
@@ -18,6 +21,7 @@ function verificarPrioridade(problema) {
     return "Normal (24h)";
 }
 
+// Atualiza os números mostrados no resumo.
 function atualizarIndicadores() {
     let total = chamados.length;
     let ativos = 0;
@@ -36,14 +40,17 @@ function atualizarIndicadores() {
     document.querySelector("#ind-resolvidos").textContent = resolvidos;
 }
 
+// Filtra e organiza a lista de chamados.
 function listarChamados() {
     listaChamadosElemento.innerHTML = "";
 
+    // Usa o que foi escrito e as opções escolhidas.
     const textoBusca = campoBusca.value.toLowerCase();
     const statusEscolhido = filtroStatus.value;
     const setorEscolhido = filtroSetor.value;
     const ordem = ordemLista.value;
 
+    // Mantém apenas os chamados que combinam com a busca e as opções.
     let listaFiltrada = chamados.filter(function(chamado) {
         const bateTexto = chamado.nome.toLowerCase().includes(textoBusca) ||
                           chamado.problema.toLowerCase().includes(textoBusca) ||
@@ -54,6 +61,7 @@ function listarChamados() {
         return bateTexto && bateStatus && bateSetor;
     });
 
+    // Coloca os chamados na ordem escolhida.
     listaFiltrada.sort(function(a, b) {
         if (ordem === "asc") {
             return a.id - b.id;
@@ -61,6 +69,7 @@ function listarChamados() {
         return b.id - a.id;
     });
 
+    // Mostra cada chamado que restou.
     listaFiltrada.forEach(function(chamado) {
         const linha = document.createElement("tr");
 
@@ -79,6 +88,7 @@ function listarChamados() {
         const colunaPrioridade = document.createElement("td");
         colunaPrioridade.textContent = verificarPrioridade(chamado.problema);
 
+        // Usa uma cor diferente para cada situação.
         const colunaStatus = document.createElement("td");
         const badge = document.createElement("span");
         badge.textContent = chamado.status;
@@ -88,6 +98,7 @@ function listarChamados() {
         if (chamado.status === "Resolvido") badge.className = "badge text-bg-success";
         colunaStatus.appendChild(badge);
 
+        // Adiciona os links para ver ou editar o chamado.
         const colunaAcoes = document.createElement("td");
         colunaAcoes.className = "text-end";
 
@@ -107,6 +118,7 @@ function listarChamados() {
     });
 }
 
+// Troca entre o tema claro e o escuro.
 botaoTema.addEventListener("click", function() {
     const temaAtual = document.documentElement.getAttribute("data-bs-theme");
     if (temaAtual === "dark") {
@@ -118,10 +130,12 @@ botaoTema.addEventListener("click", function() {
     }
 });
 
+// Atualiza a lista quando a busca ou as opções mudam.
 campoBusca.addEventListener("input", listarChamados);
 filtroStatus.addEventListener("change", listarChamados);
 filtroSetor.addEventListener("change", listarChamados);
 ordemLista.addEventListener("change", listarChamados);
 
+// Mostra o resumo e a lista ao abrir a página.
 atualizarIndicadores();
 listarChamados();
