@@ -1,3 +1,4 @@
+// Encontra os campos e as listas de técnicos e equipamentos.
 const formTecnico = document.querySelector("#form-tecnico");
 const campoNomeTecnico = document.querySelector("#nome-tecnico");
 const listaTecnicosElemento = document.querySelector("#lista-tecnicos");
@@ -6,9 +7,11 @@ const formEquipamento = document.querySelector("#form-equipamento");
 const campoNomeEquipamento = document.querySelector("#nome-equipamento");
 const listaEquipamentosElemento = document.querySelector("#lista-equipamentos");
 
+// Carrega os nomes já guardados.
 let tecnicos = JSON.parse(localStorage.getItem("tecnicos")) || [];
 let equipamentos = JSON.parse(localStorage.getItem("equipamentos")) || [];
 
+// Mostra os técnicos cadastrados.
 function listarTecnicos() {
     listaTecnicosElemento.innerHTML = "";
     tecnicos.forEach(function(tec, indice) {
@@ -20,9 +23,9 @@ function listarTecnicos() {
         botaoExcluir.textContent = "Excluir";
         botaoExcluir.className = "btn btn-sm btn-outline-danger";
         botaoExcluir.addEventListener("click", function() {
-            tecnicos.splice(indice, 1);
+            tecnicos.splice(indice, 1); // Remove o técnico da lista
             localStorage.setItem("tecnicos", JSON.stringify(tecnicos));
-            listarTecnicos();
+            listarTecnicos(); // Atualiza a lista na tela
         });
 
         item.appendChild(botaoExcluir);
@@ -30,6 +33,7 @@ function listarTecnicos() {
     });
 }
 
+// Mostra os equipamentos cadastrados.
 function listarEquipamentos() {
     listaEquipamentosElemento.innerHTML = "";
     equipamentos.forEach(function(equip, indice) {
@@ -51,6 +55,7 @@ function listarEquipamentos() {
     });
 }
 
+// Guarda o novo técnico quando o formulário é enviado.
 formTecnico.addEventListener("submit", function(evento) {
     evento.preventDefault();
     const nome = campoNomeTecnico.value.trim();
@@ -62,6 +67,7 @@ formTecnico.addEventListener("submit", function(evento) {
     listarTecnicos();
 });
 
+// Guarda o novo equipamento quando o formulário é enviado.
 formEquipamento.addEventListener("submit", function(evento) {
     evento.preventDefault();
     const nome = campoNomeEquipamento.value.trim();
@@ -73,5 +79,6 @@ formEquipamento.addEventListener("submit", function(evento) {
     listarEquipamentos();
 });
 
+// Exibe os nomes que já estavam guardados.
 listarTecnicos();
 listarEquipamentos();

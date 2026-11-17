@@ -1,6 +1,8 @@
+// Carrega os chamados e identifica qual foi escolhido.
 const containerDetalhe = document.querySelector("#detalhe-chamado");
 let chamados = JSON.parse(localStorage.getItem("chamados")) || [];
 
+// Procura o chamado pelo número recebido no endereço da página.
 const parametros = new URLSearchParams(window.location.search);
 const idChamado = Number(parametros.get("id"));
 
@@ -8,11 +10,13 @@ const indice = chamados.findIndex(function(c) {
     return c.id === idChamado;
 });
 
+// Avisa se o chamado não existir.
 if (indice === -1) {
     containerDetalhe.innerHTML = "<p>Chamado não encontrado.</p>";
 } else {
     const chamado = chamados[indice];
 
+    // Mostra as informações do chamado.
     const card = document.createElement("div");
     card.className = "card border-0 shadow-sm p-4";
 
@@ -41,6 +45,7 @@ if (indice === -1) {
     const pSolucao = document.createElement("p");
     pSolucao.innerHTML = "<strong>Solução:</strong> " + (chamado.solucao || "Ainda não resolvido");
 
+    // Cria os botões para editar ou voltar à lista.
     const divBotoes = document.createElement("div");
     divBotoes.className = "d-flex flex-wrap justify-content-between gap-2 mt-3";
 

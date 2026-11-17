@@ -11,10 +11,10 @@ Este projeto foi criado para ajudar na organização e no acompanhamento de cham
 
 ## Responsabilidades do time
 
-### Renan Gustavo Franco Ramos
+### João Marcos Gula
 Ficou responsável pela estrutura e organização das páginas em HTML, além do uso do Bootstrap para deixar a interface visualmente mais organizada, moderna e responsiva.
 
-### João Marcos Gula
+### Renan Gustavo Franco Ramos
 Ficou responsável pela lógica em JavaScript, incluindo a criação, edição, filtragem, busca, atualização de status e organização dos dados dos chamados.
 
 ## O que o sistema faz
