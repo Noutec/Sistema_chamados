@@ -26,6 +26,7 @@
           <div class="card-body conteudo-formulario p-sm-4">
             <h1 class="h2 mb-2">Abrir chamado</h1>
             <p class="small text-secondary">Todos os campos são obrigatórios.</p>
+            <!-- Formulário de abertura de chamado -->
             <form id="form-abrir-chamado" method="dialog">
               <div class="mb-3">
                 <label for="nome-novo" class="form-label">Nome</label>
@@ -42,6 +43,7 @@
                   <option>Recursos Humanos</option>
                   <option>Logística</option>
                 </select>
+                <!-- Seleção de prioridade -->
               </div>
               <div class="mb-3">
                 <label for="prioridade-novo" class="form-label">Prioridade</label>
@@ -52,6 +54,7 @@
                   <option value="alta">Alta</option>
                 </select>
               </div>
+              <!-- Categoria do problema -->
               <div class="mb-3">
                 <label for="categoria-novo" class="form-label">Categoria</label>
                 <select id="categoria-novo" name="categoria" class="form-select" required>
@@ -71,6 +74,7 @@
                 <label for="problema-novo" class="form-label">Descrição do problema</label>
                 <textarea id="problema-novo" name="problema" class="form-control" rows="4" maxlength="600" placeholder="Conte o que está acontecendo e desde quando." required></textarea>
               </div>
+              <!-- Botões do formulário -->
               <div class="acoes-formulario">
                 <button class="btn btn-primary" type="submit">Enviar chamado</button>
                 <a class="btn btn-outline-secondary" href="index.html">Voltar para todos</a>
