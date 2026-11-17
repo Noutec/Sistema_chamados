@@ -15,210 +15,61 @@
         <a class="nav-link text-white" href="index.html">Todos</a>
         <a class="nav-link text-white" href="active.html">Aguardando atendimento</a>
         <a class="nav-link text-white" href="open.html">Novo chamado</a>
+        <a class="nav-link text-white" href="cadastro.html">Cadastros</a>
       </nav>
     </div>
   </header>
 
   <main class="container py-4 py-md-5">
     <h1 class="h2 mb-2">Detalhes dos chamados</h1>
-    <!-- Informações dos chamados -->
-    <article id="chamado-1050" class="card border-0 shadow-sm mb-3">
+    <article id="detalhe-chamado" hidden class="card border-0 shadow-sm mb-3">
       <div class="card-body p-4">
         <div class="d-flex flex-wrap align-items-center gap-2 mb-1">
-          <h2 class="h4 mb-0">Chamado #1050</h2>
-          <span class="badge text-bg-danger">Aguardando atendimento</span>
+          <h2 id="numero-chamado" class="h4 mb-0"></h2>
+          <span id="detalhe-status" class="badge"></span>
         </div>
-        <p class="mb-3"><strong>Aberto por:</strong> João Lima</p>
+        <p class="mb-3"><strong>Aberto por:</strong> <span id="detalhe-nome"></span></p>
         <div class="row g-3">
           <div class="col-md-8">
             <dl class="row mb-0">
               <dt class="col-sm-4">Setor</dt>
-              <dd class="col-sm-8">Jurídico</dd>
+              <dd id="detalhe-setor" class="col-sm-8"></dd>
               <dt class="col-sm-4">Equipamento</dt>
-              <dd class="col-sm-8">Servidor de arquivos</dd>
+              <dd id="detalhe-equipamento" class="col-sm-8"></dd>
               <dt class="col-sm-4">Prioridade</dt>
-              <dd class="col-sm-8">Alta</dd>
+              <dd id="detalhe-prioridade" class="col-sm-8"></dd>
               <dt class="col-sm-4">Categoria</dt>
-              <dd class="col-sm-8">Hardware</dd>
+              <dd id="detalhe-categoria" class="col-sm-8"></dd>
               <dt class="col-sm-4">Problema</dt>
-              <dd class="col-sm-8">Servidor fora do ar.</dd>
+              <dd id="detalhe-problema" class="col-sm-8"></dd>
             </dl>
           </div>
           <div class="col-md-4">
             <dl class="mb-3">
               <dt>Aberto em</dt>
-              <dd>12/11 · 08:30</dd>
+              <dd id="detalhe-data"></dd>
+              <dt>Prazo de atendimento</dt>
+              <dd id="detalhe-prazo"></dd>
               <dt>Responsável</dt>
-              <dd>Aguardando atendimento</dd>
+              <dd id="detalhe-tecnico"></dd>
+              <dt>Solução</dt>
+              <dd id="detalhe-solucao"></dd>
             </dl>
-            <a class="btn btn-outline-primary btn-sm" href="edit.html#editar-1050" aria-label="Editar chamado #1050">Editar chamado</a>
+            <a class="btn btn-outline-primary btn-sm" id="link-editar">Editar chamado</a>
           </div>
         </div>
         <div class="d-flex flex-wrap gap-3 mt-3 small">
           <a class="link-secondary" href="index.html#lista">← Ver todos os chamados</a>
-          <a class="link-secondary" href="active.html#ativo-1050">Ver na lista de aguardando atendimento</a>
+          <a class="link-secondary" id="link-status">Ver na lista por status</a>
         </div>
       </div>
     </article>
-
-    <article id="chamado-1047" class="card border-0 shadow-sm mb-3">
-      <div class="card-body p-4">
-        <div class="d-flex flex-wrap align-items-center gap-2 mb-1">
-          <h2 class="h4 mb-0">Chamado #1047</h2>
-          <span class="badge text-bg-danger">Aguardando atendimento</span>
-        </div>
-        <p class="mb-3"><strong>Aberto por:</strong> Ana Reis</p>
-        <div class="row g-3">
-          <div class="col-md-8">
-            <dl class="row mb-0">
-              <dt class="col-sm-4">Setor</dt>
-              <dd class="col-sm-8">Comercial</dd>
-              <dt class="col-sm-4">Equipamento</dt>
-              <dd class="col-sm-8">Notebook Lenovo</dd>
-              <dt class="col-sm-4">Prioridade</dt>
-              <dd class="col-sm-8">Média</dd>
-              <dt class="col-sm-4">Categoria</dt>
-              <dd class="col-sm-8">Rede</dd>
-              <dt class="col-sm-4">Problema</dt>
-              <dd class="col-sm-8">VPN não conecta.</dd>
-            </dl>
-          </div>
-          <div class="col-md-4">
-            <dl class="mb-3">
-              <dt>Aberto em</dt>
-              <dd>11/11 · 16:45</dd>
-              <dt>Responsável</dt>
-              <dd>Aguardando atendimento</dd>
-            </dl>
-            <a class="btn btn-outline-primary btn-sm" href="edit.html#editar-1047" aria-label="Editar chamado #1047">Editar chamado</a>
-          </div>
-        </div>
-        <div class="d-flex flex-wrap gap-3 mt-3 small">
-          <a class="link-secondary" href="index.html#lista">← Ver todos os chamados</a>
-          <a class="link-secondary" href="active.html#ativo-1047">Ver na lista de aguardando atendimento</a>
-        </div>
-      </div>
-    </article>
-
-    <article id="chamado-1042" class="card border-0 shadow-sm mb-3">
-      <div class="card-body p-4">
-        <div class="d-flex flex-wrap align-items-center gap-2 mb-1">
-          <h2 class="h4 mb-0">Chamado #1042</h2>
-          <span class="badge text-bg-warning">Em andamento</span>
-        </div>
-        <p class="mb-3"><strong>Aberto por:</strong> Maria Souza</p>
-        <div class="row g-3">
-          <div class="col-md-8">
-            <dl class="row mb-0">
-              <dt class="col-sm-4">Setor</dt>
-              <dd class="col-sm-8">Financeiro</dd>
-              <dt class="col-sm-4">Equipamento</dt>
-              <dd class="col-sm-8">Desktop HP</dd>
-              <dt class="col-sm-4">Prioridade</dt>
-              <dd class="col-sm-8">Alta</dd>
-              <dt class="col-sm-4">Categoria</dt>
-              <dd class="col-sm-8">Hardware</dd>
-              <dt class="col-sm-4">Problema</dt>
-              <dd class="col-sm-8">Computador não liga. Ao apertar o botão, a luz acende e apaga.</dd>
-            </dl>
-          </div>
-          <div class="col-md-4">
-            <dl class="mb-3">
-              <dt>Aberto em</dt>
-              <dd>12/11 · 08:55</dd>
-              <dt>Responsável</dt>
-              <dd>Carlos (TI)</dd>
-            </dl>
-            <a class="btn btn-outline-primary btn-sm" href="edit.html#editar-1042" aria-label="Editar chamado #1042">Editar chamado</a>
-          </div>
-        </div>
-        <div class="d-flex flex-wrap gap-3 mt-3 small">
-          <a class="link-secondary" href="index.html#lista">← Ver todos os chamados</a>
-          <a class="link-secondary" href="in-progress.html#andamento-1042">Ver na lista em andamento</a>
-        </div>
-      </div>
-    </article>
-
-    <article id="chamado-1038" class="card border-0 shadow-sm mb-3">
-      <div class="card-body p-4">
-        <div class="d-flex flex-wrap align-items-center gap-2 mb-1">
-          <h2 class="h4 mb-0">Chamado #1038</h2>
-          <span class="badge text-bg-warning">Em andamento</span>
-        </div>
-        <p class="mb-3"><strong>Aberto por:</strong> Pedro Alves</p>
-        <div class="row g-3">
-          <div class="col-md-8">
-            <dl class="row mb-0">
-              <dt class="col-sm-4">Setor</dt>
-              <dd class="col-sm-8">Financeiro</dd>
-              <dt class="col-sm-4">Equipamento</dt>
-              <dd class="col-sm-8">Impressora</dd>
-              <dt class="col-sm-4">Prioridade</dt>
-              <dd class="col-sm-8">Baixa</dd>
-              <dt class="col-sm-4">Categoria</dt>
-              <dd class="col-sm-8">Hardware</dd>
-              <dt class="col-sm-4">Problema</dt>
-              <dd class="col-sm-8">A impressora não puxa o papel.</dd>
-            </dl>
-          </div>
-          <div class="col-md-4">
-            <dl class="mb-3">
-              <dt>Aberto em</dt>
-              <dd>10/11 · 14:20</dd>
-              <dt>Responsável</dt>
-              <dd>Equipe de TI</dd>
-            </dl>
-            <a class="btn btn-outline-primary btn-sm" href="edit.html#editar-1038" aria-label="Editar chamado #1038">Editar chamado</a>
-          </div>
-        </div>
-        <div class="d-flex flex-wrap gap-3 mt-3 small">
-          <a class="link-secondary" href="index.html#lista">← Ver todos os chamados</a>
-          <a class="link-secondary" href="in-progress.html#andamento-1038">Ver na lista em andamento</a>
-        </div>
-      </div>
-    </article>
-
-    <article id="chamado-1020" class="card border-0 shadow-sm mb-3">
-      <div class="card-body p-4">
-        <div class="d-flex flex-wrap align-items-center gap-2 mb-1">
-          <h2 class="h4 mb-0">Chamado #1020</h2>
-          <span class="badge text-bg-success">Resolvido</span>
-        </div>
-        <p class="mb-3"><strong>Aberto por:</strong> Rita Dias</p>
-        <div class="row g-3">
-          <div class="col-md-8">
-            <dl class="row mb-0">
-              <dt class="col-sm-4">Setor</dt>
-              <dd class="col-sm-8">Recursos Humanos</dd>
-              <dt class="col-sm-4">Equipamento</dt>
-              <dd class="col-sm-8">Mouse</dd>
-              <dt class="col-sm-4">Prioridade</dt>
-              <dd class="col-sm-8">Baixa</dd>
-              <dt class="col-sm-4">Categoria</dt>
-              <dd class="col-sm-8">Hardware</dd>
-              <dt class="col-sm-4">Problema</dt>
-              <dd class="col-sm-8">O mouse parou de responder.</dd>
-            </dl>
-          </div>
-          <div class="col-md-4">
-            <dl class="mb-3">
-              <dt>Aberto em</dt>
-              <dd>09/11 · 10:15</dd>
-              <dt>Responsável</dt>
-              <dd>Equipe de TI</dd>
-            </dl>
-            <a class="btn btn-outline-primary btn-sm" href="edit.html#editar-1020" aria-label="Editar chamado #1020">Editar chamado</a>
-          </div>
-        </div>
-        <div class="d-flex flex-wrap gap-3 mt-3 small">
-          <a class="link-secondary" href="index.html#lista">← Ver todos os chamados</a>
-          <a class="link-secondary" href="resolved.html#resolvido-1020">Ver na lista de resolvidos</a>
-        </div>
-      </div>
-    </article>
+    <p id="detalhe-mensagem" role="status" hidden></p>
+    <a id="detalhe-voltar" href="index.html#lista" hidden>← Ver todos os chamados</a>
   </main>
 
   <footer class="container pb-4 small text-secondary">Renan / João</footer>
+  <script src="js/chamados.js"></script>
   <script src="js/details.js"></script>
 </body>
 </html>
