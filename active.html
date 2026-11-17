@@ -15,6 +15,7 @@
         <a class="nav-link text-white" href="index.html">Todos</a>
         <a class="nav-link active" aria-current="page" href="active.html">Aguardando atendimento</a>
         <a class="nav-link text-white" href="open.html">Novo chamado</a>
+        <a class="nav-link text-white" href="registrations.html">Cadastros</a>
       </nav>
     </div>
   </header>
@@ -23,7 +24,7 @@
     <div class="d-flex flex-wrap justify-content-between align-items-start gap-3 mb-4">
       <div>
         <h1 class="h2 mb-1">Chamados aguardando atendimento</h1>
-        <p class="text-secondary mb-0">2 chamados aguardam atendimento.</p>
+        <p id="resumo-status" class="text-secondary mb-0"></p>
       </div>
       <a class="btn btn-primary" href="open.html">+ Abrir chamado</a>
     </div>
@@ -31,9 +32,9 @@
     <nav aria-label="Filtrar chamados por status">
       <ul class="list-unstyled d-flex flex-wrap gap-2 mb-3">
         <li><a class="btn btn-sm btn-outline-secondary" href="index.html">Todos</a></li>
-        <li><a class="btn btn-sm btn-danger" href="active.html" aria-current="page">2 aguardando atendimento</a></li>
-        <li><a class="btn btn-sm btn-outline-dark" href="in-progress.html">2 em andamento</a></li>
-        <li><a class="btn btn-sm btn-outline-success" href="resolved.html">1 resolvido</a></li>
+        <li><a class="btn btn-sm btn-danger" href="active.html" aria-current="page"><span data-contador="active">0</span> aguardando atendimento</a></li>
+        <li><a class="btn btn-sm btn-outline-dark" href="in-progress.html"><span data-contador="in-progress">0</span> em andamento</a></li>
+        <li><a class="btn btn-sm btn-outline-success" href="resolved.html"><span data-contador="resolved">0</span> resolvido</a></li>
       </ul>
     </nav>
 
@@ -54,36 +55,14 @@
               <th scope="col" class="text-end">Ações</th>
             </tr>
           </thead>
-          <tbody>
-            <tr id="ativo-1050">
-              <th scope="row">#1050</th>
-              <td>João Lima</td>
-              <td>Jurídico</td>
-              <td>Servidor de arquivos</td>
-              <td>Servidor fora do ar.</td>
-              <td class="text-nowrap">12/11 · 08:30</td>
-              <td class="text-end">
-                <a class="btn btn-sm btn-outline-primary text-nowrap" href="details.html#chamado-1050" aria-label="Ver detalhes do chamado #1050">Ver detalhes</a>
-              </td>
-            </tr>
-            <tr id="ativo-1047">
-              <th scope="row">#1047</th>
-              <td>Ana Reis</td>
-              <td>Comercial</td>
-              <td>Notebook Lenovo</td>
-              <td>VPN não conecta.</td>
-              <td class="text-nowrap">11/11 · 16:45</td>
-              <td class="text-end">
-                <a class="btn btn-sm btn-outline-primary text-nowrap" href="details.html#chamado-1047" aria-label="Ver detalhes do chamado #1047">Ver detalhes</a>
-              </td>
-            </tr>
-          </tbody>
+          <tbody data-status="Ativo"></tbody>
         </table>
       </div>
     </div>
   </main>
 
   <footer class="container pb-4 small text-secondary">Renan / João</footer>
+  <script src="js/chamados.js"></script>
   <script src="js/active.js"></script>
 </body>
 </html>

@@ -15,6 +15,7 @@
         <a class="nav-link text-white" href="index.html">Todos</a>
         <a class="nav-link text-white" href="active.html">Aguardando atendimento</a>
         <a class="nav-link active" aria-current="page" href="open.html">Novo chamado</a>
+        <a class="nav-link text-white" href="registrations.html">Cadastros</a>
       </nav>
     </div>
   </header>
@@ -27,7 +28,7 @@
             <h1 class="h2 mb-2">Abrir chamado</h1>
             <p class="small text-secondary">Todos os campos são obrigatórios.</p>
             <!-- Formulário de abertura de chamado -->
-            <form id="form-abrir-chamado" method="dialog">
+            <form id="form-abrir-chamado">
               <div class="mb-3">
                 <label for="nome-novo" class="form-label">Nome</label>
                 <input id="nome-novo" name="nome" class="form-control" placeholder="Ex.: Maria Souza" maxlength="80" pattern=".*\S.*" aria-describedby="ajuda-nome-novo" required>
@@ -67,8 +68,10 @@
               </div>
               <div class="mb-3">
                 <label for="equipamento-novo" class="form-label">Equipamento</label>
-                <input id="equipamento-novo" name="equipamento" class="form-control" placeholder="Ex.: Notebook" maxlength="100" pattern=".*\S.*" aria-describedby="ajuda-equipamento-novo" required>
-                <div id="ajuda-equipamento-novo" class="form-text">Informe pelo menos um caractere que não seja espaço.</div>
+                <select id="equipamento-novo" name="equipamento" class="form-select" required>
+                  <option value="">Selecione o equipamento</option>
+                </select>
+                <div class="form-text">Gerencie a lista em <a href="registrations.html">Cadastros</a>.</div>
               </div>
               <div class="mb-4">
                 <label for="problema-novo" class="form-label">Descrição do problema</label>
@@ -87,6 +90,7 @@
   </main>
 
   <footer class="container pb-4 small text-secondary">Renan / João</footer>
+  <script src="js/chamados.js"></script>
   <script src="js/open.js"></script>
 </body>
 </html>
