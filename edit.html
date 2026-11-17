@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Editar chamado | Central de chamados</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-body-tertiary">
+  <header class="cabecalho text-white">
+    <div class="container d-flex flex-wrap align-items-center justify-content-between column-gap-3 py-2">
+      <a class="text-white text-decoration-none fw-semibold py-2" href="index.html">Central de chamados</a>
+      <nav class="nav nav-pills" aria-label="Navegação principal">
+        <a class="nav-link text-white" href="index.html">Todos</a>
+        <a class="nav-link text-white" href="active.html">Aguardando atendimento</a>
+        <a class="nav-link text-white" href="open.html">Novo chamado</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container py-4 py-md-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <h1 class="h2 mb-2">Editar chamado</h1>
+
+        <details class="card border-0 shadow-sm p-3 mb-3">
+          <summary class="fw-semibold">Chamado #1050 · João Lima</summary>
+          <div id="editar-1050" class="pt-3">
+            <p>Status atual: <span class="badge text-bg-danger">Aguardando atendimento</span></p>
+            <form id="form-editar-1050" method="dialog" data-chamado="1050">
+              <div class="mb-3">
+                <label for="nome-1050" class="form-label">Nome</label>
+                <input id="nome-1050" name="nome" class="form-control" value="João Lima" maxlength="80" pattern=".*\S.*" aria-describedby="ajuda-nome-1050" required>
+                <div id="ajuda-nome-1050" class="form-text">Informe pelo menos um caractere que não seja espaço.</div>
+              </div>
+              <div class="mb-3">
+                <label for="setor-1050" class="form-label">Setor</label>
+                <select id="setor-1050" name="setor" class="form-select" required>
+                  <option value="">Selecione o setor</option>
+                  <option>Financeiro</option>
+                  <option selected>Jurídico</option>
+                  <option>Comercial</option>
+                  <option>Recursos Humanos</option>
+                  <option>Logística</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="prioridade-1050" class="form-label">Prioridade</label>
+                <select id="prioridade-1050" name="prioridade" class="form-select" required>
+                  <option value="">Selecione a prioridade</option>
+                  <option value="baixa">Baixa</option>
+                  <option value="media">Média</option>
+                  <option value="alta" selected>Alta</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="categoria-1050" class="form-label">Categoria</label>
+                <select id="categoria-1050" name="categoria" class="form-select" required>
+                  <option value="">Selecione a categoria</option>
+                  <option value="hardware" selected>Hardware</option>
+                  <option value="software">Software</option>
+                  <option value="rede">Rede</option>
+                  <option value="outros">Outros</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="equipamento-1050" class="form-label">Equipamento</label>
+                <input id="equipamento-1050" name="equipamento" class="form-control" value="Servidor de arquivos" maxlength="100" pattern=".*\S.*" aria-describedby="ajuda-equipamento-1050" required>
+                <div id="ajuda-equipamento-1050" class="form-text">Informe pelo menos um caractere que não seja espaço.</div>
+              </div>
+              <div class="mb-4">
+                <label for="problema-1050" class="form-label">Descrição do problema</label>
+                <textarea id="problema-1050" name="problema" class="form-control" rows="4" maxlength="600" required>Servidor fora do ar.</textarea>
+              </div>
+              <div class="acoes-formulario">
+                <button class="btn btn-primary" type="submit">Salvar alterações</button>
+                <a class="btn btn-outline-secondary" href="details.html#chamado-1050">Voltar para os detalhes</a>
+              </div>
+            </form>
+          </div>
+        </details>
+
+        <details class="card border-0 shadow-sm p-3 mb-3">
+          <summary class="fw-semibold">Chamado #1047 · Ana Reis</summary>
+          <div id="editar-1047" class="pt-3">
+            <p>Status atual: <span class="badge text-bg-danger">Aguardando atendimento</span></p>
+            <form id="form-editar-1047" method="dialog" data-chamado="1047">
+              <div class="mb-3">
+                <label for="nome-1047" class="form-label">Nome</label>
+                <input id="nome-1047" name="nome" class="form-control" value="Ana Reis" maxlength="80" pattern=".*\S.*" aria-describedby="ajuda-nome-1047" required>
+                <div id="ajuda-nome-1047" class="form-text">Informe pelo menos um caractere que não seja espaço.</div>
+              </div>
+              <div class="mb-3">
+                <label for="setor-1047" class="form-label">Setor</label>
+                <select id="setor-1047" name="setor" class="form-select" required>
+                  <option value="">Selecione o setor</option>
+                  <option>Financeiro</option>
+                  <option>Jurídico</option>
+                  <option selected>Comercial</option>
+                  <option>Recursos Humanos</option>
+                  <option>Logística</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="prioridade-1047" class="form-label">Prioridade</label>
+                <select id="prioridade-1047" name="prioridade" class="form-select" required>
+                  <option value="">Selecione a prioridade</option>
+                  <option value="baixa">Baixa</option>
+                  <option value="media" selected>Média</option>
+                  <option value="alta">Alta</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="categoria-1047" class="form-label">Categoria</label>
+                <select id="categoria-1047" name="categoria" class="form-select" required>
+                  <option value="">Selecione a categoria</option>
+                  <option value="hardware">Hardware</option>
+                  <option value="software">Software</option>
+                  <option value="rede" selected>Rede</option>
+                  <option value="outros">Outros</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="equipamento-1047" class="form-label">Equipamento</label>
+                <input id="equipamento-1047" name="equipamento" class="form-control" value="Notebook Lenovo" maxlength="100" pattern=".*\S.*" aria-describedby="ajuda-equipamento-1047" required>
+                <div id="ajuda-equipamento-1047" class="form-text">Informe pelo menos um caractere que não seja espaço.</div>
+              </div>
+              <div class="mb-4">
+                <label for="problema-1047" class="form-label">Descrição do problema</label>
+                <textarea id="problema-1047" name="problema" class="form-control" rows="4" maxlength="600" required>VPN não conecta.</textarea>
+              </div>
+              <div class="acoes-formulario">
+                <button class="btn btn-primary" type="submit">Salvar alterações</button>
+                <a class="btn btn-outline-secondary" href="details.html#chamado-1047">Voltar para os detalhes</a>
+              </div>
+            </form>
+          </div>
+        </details>
+
+        <details class="card border-0 shadow-sm p-3 mb-3">
+          <summary class="fw-semibold">Chamado #1042 · Maria Souza</summary>
+          <div id="editar-1042" class="pt-3">
+            <p>Status atual: <span class="badge text-bg-warning">Em andamento</span></p>
+            <form id="form-editar-1042" method="dialog" data-chamado="1042">
+              <div class="mb-3">
+                <label for="nome-1042" class="form-label">Nome</label>
+                <input id="nome-1042" name="nome" class="form-control" value="Maria Souza" maxlength="80" pattern=".*\S.*" aria-describedby="ajuda-nome-1042" required>
+                <div id="ajuda-nome-1042" class="form-text">Informe pelo menos um caractere que não seja espaço.</div>
+              </div>
+              <div class="mb-3">
+                <label for="setor-1042" class="form-label">Setor</label>
+                <select id="setor-1042" name="setor" class="form-select" required>
+                  <option value="">Selecione o setor</option>
+                  <option selected>Financeiro</option>
+                  <option>Jurídico</option>
+                  <option>Comercial</option>
+                  <option>Recursos Humanos</option>
+                  <option>Logística</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="prioridade-1042" class="form-label">Prioridade</label>
+                <select id="prioridade-1042" name="prioridade" class="form-select" required>
+                  <option value="">Selecione a prioridade</option>
+                  <option value="baixa">Baixa</option>
+                  <option value="media">Média</option>
+                  <option value="alta" selected>Alta</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="categoria-1042" class="form-label">Categoria</label>
+                <select id="categoria-1042" name="categoria" class="form-select" required>
+                  <option value="">Selecione a categoria</option>
+                  <option value="hardware" selected>Hardware</option>
+                  <option value="software">Software</option>
+                  <option value="rede">Rede</option>
+                  <option value="outros">Outros</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="equipamento-1042" class="form-label">Equipamento</label>
+                <input id="equipamento-1042" name="equipamento" class="form-control" value="Desktop HP" maxlength="100" pattern=".*\S.*" aria-describedby="ajuda-equipamento-1042" required>
+                <div id="ajuda-equipamento-1042" class="form-text">Informe pelo menos um caractere que não seja espaço.</div>
+              </div>
+              <div class="mb-4">
+                <label for="problema-1042" class="form-label">Descrição do problema</label>
+                <textarea id="problema-1042" name="problema" class="form-control" rows="4" maxlength="600" required>Computador não liga. Ao apertar o botão, a luz acende e apaga.</textarea>
+              </div>
+              <div class="acoes-formulario">
+                <button class="btn btn-primary" type="submit">Salvar alterações</button>
+                <a class="btn btn-outline-secondary" href="details.html#chamado-1042">Voltar para os detalhes</a>
+              </div>
+            </form>
+          </div>
+        </details>
+
+        <details class="card border-0 shadow-sm p-3 mb-3">
+          <summary class="fw-semibold">Chamado #1038 · Pedro Alves</summary>
+          <div id="editar-1038" class="pt-3">
+            <p>Status atual: <span class="badge text-bg-warning">Em andamento</span></p>
+            <form id="form-editar-1038" method="dialog" data-chamado="1038">
+              <div class="mb-3">
+                <label for="nome-1038" class="form-label">Nome</label>
+                <input id="nome-1038" name="nome" class="form-control" value="Pedro Alves" maxlength="80" pattern=".*\S.*" aria-describedby="ajuda-nome-1038" required>
+                <div id="ajuda-nome-1038" class="form-text">Informe pelo menos um caractere que não seja espaço.</div>
+              </div>
+              <div class="mb-3">
+                <label for="setor-1038" class="form-label">Setor</label>
+                <select id="setor-1038" name="setor" class="form-select" required>
+                  <option value="">Selecione o setor</option>
+                  <option selected>Financeiro</option>
+                  <option>Jurídico</option>
+                  <option>Comercial</option>
+                  <option>Recursos Humanos</option>
+                  <option>Logística</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="prioridade-1038" class="form-label">Prioridade</label>
+                <select id="prioridade-1038" name="prioridade" class="form-select" required>
+                  <option value="">Selecione a prioridade</option>
+                  <option value="baixa" selected>Baixa</option>
+                  <option value="media">Média</option>
+                  <option value="alta">Alta</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="categoria-1038" class="form-label">Categoria</label>
+                <select id="categoria-1038" name="categoria" class="form-select" required>
+                  <option value="">Selecione a categoria</option>
+                  <option value="hardware" selected>Hardware</option>
+                  <option value="software">Software</option>
+                  <option value="rede">Rede</option>
+                  <option value="outros">Outros</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="equipamento-1038" class="form-label">Equipamento</label>
+                <input id="equipamento-1038" name="equipamento" class="form-control" value="Impressora" maxlength="100" pattern=".*\S.*" aria-describedby="ajuda-equipamento-1038" required>
+                <div id="ajuda-equipamento-1038" class="form-text">Informe pelo menos um caractere que não seja espaço.</div>
+              </div>
+              <div class="mb-4">
+                <label for="problema-1038" class="form-label">Descrição do problema</label>
+                <textarea id="problema-1038" name="problema" class="form-control" rows="4" maxlength="600" required>A impressora não puxa o papel.</textarea>
+              </div>
+              <div class="acoes-formulario">
+                <button class="btn btn-primary" type="submit">Salvar alterações</button>
+                <a class="btn btn-outline-secondary" href="details.html#chamado-1038">Voltar para os detalhes</a>
+              </div>
+            </form>
+          </div>
+        </details>
+
+        <details class="card border-0 shadow-sm p-3 mb-3">
+          <summary class="fw-semibold">Chamado #1020 · Rita Dias</summary>
+          <div id="editar-1020" class="pt-3">
+            <p>Status atual: <span class="badge text-bg-success">Resolvido</span></p>
+            <form id="form-editar-1020" method="dialog" data-chamado="1020">
+              <div class="mb-3">
+                <label for="nome-1020" class="form-label">Nome</label>
+                <input id="nome-1020" name="nome" class="form-control" value="Rita Dias" maxlength="80" pattern=".*\S.*" aria-describedby="ajuda-nome-1020" required>
+                <div id="ajuda-nome-1020" class="form-text">Informe pelo menos um caractere que não seja espaço.</div>
+              </div>
+              <div class="mb-3">
+                <label for="setor-1020" class="form-label">Setor</label>
+                <select id="setor-1020" name="setor" class="form-select" required>
+                  <option value="">Selecione o setor</option>
+                  <option>Financeiro</option>
+                  <option>Jurídico</option>
+                  <option>Comercial</option>
+                  <option selected>Recursos Humanos</option>
+                  <option>Logística</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="prioridade-1020" class="form-label">Prioridade</label>
+                <select id="prioridade-1020" name="prioridade" class="form-select" required>
+                  <option value="">Selecione a prioridade</option>
+                  <option value="baixa" selected>Baixa</option>
+                  <option value="media">Média</option>
+                  <option value="alta">Alta</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="categoria-1020" class="form-label">Categoria</label>
+                <select id="categoria-1020" name="categoria" class="form-select" required>
+                  <option value="">Selecione a categoria</option>
+                  <option value="hardware" selected>Hardware</option>
+                  <option value="software">Software</option>
+                  <option value="rede">Rede</option>
+                  <option value="outros">Outros</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="equipamento-1020" class="form-label">Equipamento</label>
+                <input id="equipamento-1020" name="equipamento" class="form-control" value="Mouse" maxlength="100" pattern=".*\S.*" aria-describedby="ajuda-equipamento-1020" required>
+                <div id="ajuda-equipamento-1020" class="form-text">Informe pelo menos um caractere que não seja espaço.</div>
+              </div>
+              <div class="mb-4">
+                <label for="problema-1020" class="form-label">Descrição do problema</label>
+                <textarea id="problema-1020" name="problema" class="form-control" rows="4" maxlength="600" required>O mouse parou de responder.</textarea>
+              </div>
+              <div class="acoes-formulario">
+                <button class="btn btn-primary" type="submit">Salvar alterações</button>
+                <a class="btn btn-outline-secondary" href="details.html#chamado-1020">Voltar para os detalhes</a>
+              </div>
+            </form>
+          </div>
+        </details>
+      </div>
+    </div>
+  </main>
+
+  <footer class="container pb-4 small text-secondary">Renan / João</footer>
+</body>
+</html>
