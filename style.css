@@ -1,0 +1,57 @@
+.cabecalho {
+  background-color: #192c43;
+}
+
+.tabela-chamados {
+  min-width: 38rem;
+}
+
+.table-responsive:focus-visible {
+  outline: 2px solid #0d6efd;
+  outline-offset: 2px;
+}
+
+.acoes-formulario {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+@media (max-width: 575px) {
+  .cabecalho nav {
+    flex-basis: 100%;
+  }
+
+  .cabecalho .nav-link {
+    padding: 0.5rem 0.625rem;
+  }
+
+  .acoes-formulario > * {
+    width: 100%;
+  }
+
+  .conteudo-formulario {
+    padding: 1rem;
+  }
+}
+
+/* Mantém a indicação de rolagem útil também em telas maiores. */
+.table-responsive {
+  overflow-x: auto;
+}
+
+/* Garante foco visível para navegação por teclado. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible {
+  outline: 2px solid #0d6efd;
+  outline-offset: 2px;
+}
+
+/* Evita que descrições longas ultrapassem a área dos detalhes. */
+.card dd {
+  overflow-wrap: anywhere;
+}
