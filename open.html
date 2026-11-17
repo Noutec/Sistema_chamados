@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Abrir chamado | Central de chamados</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-body-tertiary">
   <header class="cabecalho text-white">
@@ -13,7 +13,7 @@
       <a class="text-white text-decoration-none fw-semibold py-2" href="index.html">Central de chamados</a>
       <nav class="nav nav-pills" aria-label="Navegação principal">
         <a class="nav-link text-white" href="index.html">Todos</a>
-        <a class="nav-link text-white" href="active.html">Ativos</a>
+        <a class="nav-link text-white" href="active.html">Aguardando atendimento</a>
         <a class="nav-link active" aria-current="page" href="open.html">Novo chamado</a>
       </nav>
     </div>
@@ -26,10 +26,11 @@
           <div class="card-body conteudo-formulario p-sm-4">
             <h1 class="h2 mb-2">Abrir chamado</h1>
             <p class="small text-secondary">Todos os campos são obrigatórios.</p>
-            <form id="form-abrir-chamado">
+            <form id="form-abrir-chamado" method="dialog">
               <div class="mb-3">
                 <label for="nome-novo" class="form-label">Nome</label>
-                <input id="nome-novo" name="nome" class="form-control" maxlength="80" required>
+                <input id="nome-novo" name="nome" class="form-control" placeholder="Ex.: Maria Souza" maxlength="80" pattern=".*\S.*" aria-describedby="ajuda-nome-novo" required>
+                <div id="ajuda-nome-novo" class="form-text">Informe pelo menos um caractere que não seja espaço.</div>
               </div>
               <div class="mb-3">
                 <label for="setor-novo" class="form-label">Setor</label>
@@ -43,12 +44,32 @@
                 </select>
               </div>
               <div class="mb-3">
-                <label for="equipamento-novo" class="form-label">Tipo de equipamento</label>
-                <input id="equipamento-novo" name="equipamento" class="form-control" maxlength="80" placeholder="Digite o tipo de equipamento" required>
+                <label for="prioridade-novo" class="form-label">Prioridade</label>
+                <select id="prioridade-novo" name="prioridade" class="form-select" required>
+                  <option value="">Selecione a prioridade</option>
+                  <option value="baixa">Baixa</option>
+                  <option value="media">Média</option>
+                  <option value="alta">Alta</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="categoria-novo" class="form-label">Categoria</label>
+                <select id="categoria-novo" name="categoria" class="form-select" required>
+                  <option value="">Selecione a categoria</option>
+                  <option value="hardware">Hardware</option>
+                  <option value="software">Software</option>
+                  <option value="rede">Rede</option>
+                  <option value="outros">Outros</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="equipamento-novo" class="form-label">Equipamento</label>
+                <input id="equipamento-novo" name="equipamento" class="form-control" placeholder="Ex.: Notebook" maxlength="100" pattern=".*\S.*" aria-describedby="ajuda-equipamento-novo" required>
+                <div id="ajuda-equipamento-novo" class="form-text">Informe pelo menos um caractere que não seja espaço.</div>
               </div>
               <div class="mb-4">
                 <label for="problema-novo" class="form-label">Descrição do problema</label>
-                <textarea id="problema-novo" name="problema" class="form-control" rows="4" maxlength="600" required></textarea>
+                <textarea id="problema-novo" name="problema" class="form-control" rows="4" maxlength="600" placeholder="Conte o que está acontecendo e desde quando." required></textarea>
               </div>
               <div class="acoes-formulario">
                 <button class="btn btn-primary" type="submit">Enviar chamado</button>
