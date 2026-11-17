@@ -25,14 +25,17 @@ Ficou responsável pela lógica em JavaScript, incluindo a criação, edição, 
 - permite buscar e filtrar informações;
 - exibe os detalhes de cada chamado;
 - edita ou exclui registros;
-- salva os dados no navegador.
+- salva os dados no navegador;
+- vincula equipamentos e técnicos cadastrados aos chamados;
+- calcula o prazo de atendimento por prioridade;
+- mostra o total de chamados e os totais por status.
 
 ## Como usar
-1. Clique em “Abrir chamado”.
+1. Cadastre um equipamento em **Cadastros** e clique em **Novo chamado**.
 2. Preencha as informações do problema.
 3. Salve o chamado.
 4. Na página inicial, você poderá visualizar, buscar, filtrar e acompanhar o status.
-5. Ao clicar em "Detalhes" ou "Editar", você acessa mais informações e pode alterar o chamado.
+5. Ao clicar em "Detalhes" ou "Editar", você acessa mais informações e pode alterar o chamado. Para iniciar o atendimento, selecione um técnico cadastrado.
 
 ## Ferramentas e tecnologias utilizadas
 
@@ -43,6 +46,8 @@ Ficou responsável pela lógica em JavaScript, incluindo a criação, edição, 
 - LocalStorage do navegador
 
 ## Como rodar o projeto
+
+Abra a pasta no VS Code e inicie o Live Server pelo arquivo index.html. Use o mesmo endereço e porta durante a navegação para acessar os registros salvos.
 
 
 ## Observação
