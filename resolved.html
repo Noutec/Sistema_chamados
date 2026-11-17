@@ -15,6 +15,7 @@
         <a class="nav-link text-white" href="index.html">Todos</a>
         <a class="nav-link text-white" href="active.html">Aguardando atendimento</a>
         <a class="nav-link text-white" href="open.html">Novo chamado</a>
+        <a class="nav-link text-white" href="cadastro.html">Cadastros</a>
       </nav>
     </div>
   </header>
@@ -23,7 +24,7 @@
     <div class="d-flex flex-wrap justify-content-between align-items-start gap-3 mb-4">
       <div>
         <h1 class="h2 mb-1">Chamados resolvidos</h1>
-        <p class="text-secondary mb-0">1 chamado teve o atendimento concluído.</p>
+        <p id="resumo-status" class="text-secondary mb-0"></p>
       </div>
       <a class="btn btn-primary" href="open.html">+ Abrir chamado</a>
     </div>
@@ -31,9 +32,9 @@
     <nav aria-label="Filtrar chamados por status">
       <ul class="list-unstyled d-flex flex-wrap gap-2 mb-3">
         <li><a class="btn btn-sm btn-outline-secondary" href="index.html">Todos</a></li>
-        <li><a class="btn btn-sm btn-outline-danger" href="active.html">2 aguardando atendimento</a></li>
-        <li><a class="btn btn-sm btn-outline-dark" href="in-progress.html">2 em andamento</a></li>
-        <li><a class="btn btn-sm btn-success" href="resolved.html" aria-current="page">1 resolvido</a></li>
+        <li><a class="btn btn-sm btn-outline-danger" href="active.html"><span data-contador="active">0</span> aguardando atendimento</a></li>
+        <li><a class="btn btn-sm btn-outline-dark" href="in-progress.html"><span data-contador="in-progress">0</span> em andamento</a></li>
+        <li><a class="btn btn-sm btn-success" href="resolved.html" aria-current="page"><span data-contador="resolved">0</span> resolvido</a></li>
       </ul>
     </nav>
 
@@ -53,25 +54,14 @@
               <th scope="col" class="text-end">Ações</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <th scope="row" id="resolvido-1020">#1020</th>
-              <td>Rita Dias</td>
-              <td>Recursos Humanos</td>
-              <td>Mouse</td>
-              <td><span class="badge text-bg-success">Resolvido</span></td>
-              <td class="text-end">
-                <a class="btn btn-sm btn-outline-primary text-nowrap" href="details.html#chamado-1020" aria-label="Ver detalhes do chamado #1020">Ver detalhes</a>
-              </td>
-            </tr>
-          </tbody>
+          <tbody data-status="Resolvido"></tbody>
         </table>
       </div>
     </div>
   </main>
 
   <footer class="container pb-4 small text-secondary">Renan / João</footer>
-   <script src="js/tema.js"></script>
+  <script src="js/chamados.js"></script>
   <script src="js/resolved.js"></script>
 </body>
 </html>
