@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-body-tertiary">
+  <!-- Barra de navegação -->
   <header class="cabecalho text-white">
     <div class="container d-flex flex-wrap align-items-center justify-content-between column-gap-3 py-2">
       <a class="text-white text-decoration-none fw-semibold py-2" href="index.html">Central de chamados</a>
@@ -18,7 +19,7 @@
       </nav>
     </div>
   </header>
-
+  <!-- Título e botão para abrir chamado -->
   <main class="container py-4 py-md-5">
     <div class="d-flex flex-wrap justify-content-between align-items-start gap-3 mb-4">
       <div>
@@ -26,7 +27,7 @@
       </div>
       <a class="btn btn-primary" href="open.html">+ Abrir chamado</a>
     </div>
-
+  <!-- Filtros por status -->
     <nav aria-label="Filtrar chamados por status">
       <ul class="list-unstyled d-flex flex-wrap gap-2 mb-3">
         <li><a class="btn btn-sm btn-secondary" href="index.html" aria-current="page">Todos</a></li>
@@ -35,7 +36,7 @@
         <li><a class="btn btn-sm btn-outline-success" href="resolved.html">1 resolvido</a></li>
       </ul>
     </nav>
-
+  <!-- Tabela de todos os chamados -->
     <p class="small text-secondary mb-2">Se necessário, deslize a tabela horizontalmente para ver todas as colunas.</p>
     <div id="lista" class="card border-0 shadow-sm">
       <div class="table-responsive" tabindex="0" role="region" aria-label="Lista de chamados">
