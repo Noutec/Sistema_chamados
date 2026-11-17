@@ -1,10 +1,13 @@
 
 // Busca os chamados já guardados.
-const listaChamadosElemento = document.querySelector("#lista-chamados");
-const chamados = JSON.parse(localStorage.getItem("chamados")) || [];
+const listaChamadosElemento = document.querySelector("tbody[data-status]");
+const chamados = lerChamados();
 
 // Mostra apenas os chamados ativos.
 function listarPorStatus() {
+    if (!chamados) return;
+    atualizarIndicadores(chamados);
+
     // Limpa a tabela antes de preenchê-la.
     listaChamadosElemento.innerHTML = "";
 
@@ -12,11 +15,24 @@ function listarPorStatus() {
         return chamado.status === "Ativo";
     });
 
+    const quantidade = filtrados.length;
+    document.querySelector("#resumo-status").textContent =
+        quantidade === 1 ? "1 chamado aguarda atendimento." : quantidade + " chamados aguardam atendimento.";
+
+    if (quantidade === 0) {
+        const celula = listaChamadosElemento.insertRow().insertCell();
+        celula.colSpan = 7;
+        celula.className = "text-secondary";
+        celula.textContent = "Nenhum chamado neste status.";
+    }
+
     // Cria uma linha para cada chamado encontrado.
     filtrados.forEach(function(chamado) {
         const linha = document.createElement("tr");
+        linha.id = "chamado-" + chamado.id;
 
         const colunaNumero = document.createElement("th");
+        colunaNumero.scope = "row";
         colunaNumero.textContent = "#" + chamado.id;
 
         const colunaNome = document.createElement("td");

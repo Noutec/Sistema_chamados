@@ -1,51 +1,22 @@
 // Encontra os itens da página principal.
-const listaChamadosElemento = document.querySelector("#lista-chamados");
+const grupos = document.querySelectorAll("tbody[data-status]");
 const campoBusca = document.querySelector("#campo-busca");
 const filtroStatus = document.querySelector("#filtro-status");
 const filtroSetor = document.querySelector("#filtro-setor");
 const ordemLista = document.querySelector("#ordem-lista");
-const botaoTema = document.querySelector("#btn-tema");
 
-// Carrega os chamados já guardados.
-let chamados = JSON.parse(localStorage.getItem("chamados")) || [];
-
-// Define a prioridade pelo tipo de problema.
-function verificarPrioridade(problema) {
-    const texto = problema.toLowerCase();
-    if (texto.includes("servidor") || texto.includes("fora do ar") || texto.includes("não liga")) {
-        return "Urgente (2h)";
-    }
-    if (texto.includes("vpn") || texto.includes("rede") || texto.includes("impressora")) {
-        return "Média (8h)";
-    }
-    return "Normal (24h)";
-}
-
-// Atualiza os números mostrados no resumo.
-function atualizarIndicadores() {
-    let total = chamados.length;
-    let ativos = 0;
-    let andamento = 0;
-    let resolvidos = 0;
-
-    chamados.forEach(function(chamado) {
-        if (chamado.status === "Ativo") ativos++;
-        if (chamado.status === "Em andamento") andamento++;
-        if (chamado.status === "Resolvido") resolvidos++;
-    });
-
-    document.querySelector("#ind-total").textContent = total;
-    document.querySelector("#ind-ativos").textContent = ativos;
-    document.querySelector("#ind-andamento").textContent = andamento;
-    document.querySelector("#ind-resolvidos").textContent = resolvidos;
-}
+const chamados = lerChamados();
 
 // Filtra e organiza a lista de chamados.
 function listarChamados() {
-    listaChamadosElemento.innerHTML = "";
+    if (!chamados) return;
+
+    for (const grupo of grupos) {
+        while (grupo.rows.length > 1) grupo.deleteRow(1);
+    }
 
     // Usa o que foi escrito e as opções escolhidas.
-    const textoBusca = campoBusca.value.toLowerCase();
+    const textoBusca = campoBusca.value.trim().toLowerCase();
     const statusEscolhido = filtroStatus.value;
     const setorEscolhido = filtroSetor.value;
     const ordem = ordemLista.value;
@@ -71,6 +42,7 @@ function listarChamados() {
 
     // Mostra cada chamado que restou.
     listaFiltrada.forEach(function(chamado) {
+        if (!Object.hasOwn(situacoes, chamado.status)) return;
         const linha = document.createElement("tr");
 
         const colunaNumero = document.createElement("th");
@@ -85,17 +57,11 @@ function listarChamados() {
         const colunaEquipamento = document.createElement("td");
         colunaEquipamento.textContent = chamado.equipamento;
 
-        const colunaPrioridade = document.createElement("td");
-        colunaPrioridade.textContent = verificarPrioridade(chamado.problema);
-
         // Usa uma cor diferente para cada situação.
         const colunaStatus = document.createElement("td");
         const badge = document.createElement("span");
-        badge.textContent = chamado.status;
-        badge.className = "badge text-bg-secondary";
-        if (chamado.status === "Ativo") badge.className = "badge text-bg-danger";
-        if (chamado.status === "Em andamento") badge.className = "badge text-bg-warning";
-        if (chamado.status === "Resolvido") badge.className = "badge text-bg-success";
+        badge.className = "badge";
+        preencherStatus(badge, chamado.status);
         colunaStatus.appendChild(badge);
 
         // Adiciona os links para ver ou editar o chamado.
@@ -113,22 +79,21 @@ function listarChamados() {
         linkEditar.className = "btn btn-sm btn-outline-secondary";
 
         colunaAcoes.append(linkDetalhes, linkEditar);
-        linha.append(colunaNumero, colunaNome, colunaSetor, colunaEquipamento, colunaPrioridade, colunaStatus, colunaAcoes);
-        listaChamadosElemento.appendChild(linha);
+        linha.append(colunaNumero, colunaNome, colunaSetor, colunaEquipamento, colunaStatus, colunaAcoes);
+        linha.id = "chamado-" + chamado.id;
+        const grupo = Array.from(grupos).find(grupo => grupo.dataset.status === chamado.status);
+        grupo?.appendChild(linha);
     });
-}
 
-// Troca entre o tema claro e o escuro.
-botaoTema.addEventListener("click", function() {
-    const temaAtual = document.documentElement.getAttribute("data-bs-theme");
-    if (temaAtual === "dark") {
-        document.documentElement.setAttribute("data-bs-theme", "light");
-        botaoTema.textContent = "Modo Escuro";
-    } else {
-        document.documentElement.setAttribute("data-bs-theme", "dark");
-        botaoTema.textContent = "Modo Claro";
+    for (const grupo of grupos) {
+        if (grupo.rows.length === 1) {
+            const celula = grupo.insertRow().insertCell();
+            celula.colSpan = 6;
+            celula.className = "text-secondary";
+            celula.textContent = "Nenhum chamado encontrado neste status.";
+        }
     }
-});
+}
 
 // Atualiza a lista quando a busca ou as opções mudam.
 campoBusca.addEventListener("input", listarChamados);
@@ -137,5 +102,8 @@ filtroSetor.addEventListener("change", listarChamados);
 ordemLista.addEventListener("change", listarChamados);
 
 // Mostra o resumo e a lista ao abrir a página.
-atualizarIndicadores();
-listarChamados();
+if (chamados) {
+    document.querySelector("#ind-total").textContent = chamados.length;
+    atualizarIndicadores(chamados);
+    listarChamados();
+}

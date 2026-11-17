@@ -4,9 +4,10 @@ const campoNome = document.querySelector("#nome-novo");
 const campoSetor = document.querySelector("#setor-novo");
 const campoEquipamento = document.querySelector("#equipamento-novo");
 const campoProblema = document.querySelector("#problema-novo");
+const campoPrioridade = document.querySelector("#prioridade-novo");
+const campoCategoria = document.querySelector("#categoria-novo");
 
-// Carrega os chamados já guardados.
-let chamados = JSON.parse(localStorage.getItem("chamados")) || [];
+preencherCatalogo(campoEquipamento, "equipamentos");
 
 // Guarda o chamado quando o formulário é enviado.
 formulario.addEventListener("submit", function(evento) {
@@ -22,6 +23,16 @@ formulario.addEventListener("submit", function(evento) {
         alert("Preencha todos os campos corretamente!");
         return;
     }
+
+    const equipamentos = lerRegistros("equipamentos");
+    if (!equipamentos) return;
+    if (!equipamentos.some(registro => registro.nome === equipamento)) {
+        alert("Selecione um equipamento cadastrado.");
+        return;
+    }
+
+    const chamados = lerChamados();
+    if (!chamados) return;
 
     // Escolhe o próximo número e guarda a data de hoje.
     let maiorId = 1000;
@@ -41,15 +52,18 @@ formulario.addEventListener("submit", function(evento) {
         setor: setor,
         equipamento: equipamento,
         problema: problema,
+        prioridade: campoPrioridade.value,
+        categoria: campoCategoria.value,
         status: "Ativo",
         tecnico: "",
         solucao: "",
-        data: dataHoje
+        data: dataHoje,
+        abertoEm: agora.getTime()
     };
 
     // Guarda o chamado e volta para a lista.
     chamados.push(novoChamado);
-    localStorage.setItem("chamados", JSON.stringify(chamados));
+    if (!gravarChamados(chamados)) return;
 
     alert("Chamado #" + novoChamado.id + " cadastrado com sucesso!");
     window.location.href = "index.html";

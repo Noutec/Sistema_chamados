@@ -1,9 +1,12 @@
 // Busca os chamados já guardados.
-const listaChamadosElemento = document.querySelector("#lista-chamados");
-const chamados = JSON.parse(localStorage.getItem("chamados")) || [];
+const listaChamadosElemento = document.querySelector("tbody[data-status]");
+const chamados = lerChamados();
 
 // Mostra apenas os chamados resolvidos.
 function listarPorStatus() {
+    if (!chamados) return;
+    atualizarIndicadores(chamados);
+
     // Limpa a tabela antes de preenchê-la.
     listaChamadosElemento.innerHTML = "";
 
@@ -11,11 +14,24 @@ function listarPorStatus() {
         return chamado.status === "Resolvido";
     });
 
+    const quantidade = filtrados.length;
+    document.querySelector("#resumo-status").textContent =
+        quantidade === 1 ? "1 chamado teve o atendimento concluído." : quantidade + " chamados tiveram o atendimento concluído.";
+
+    if (quantidade === 0) {
+        const celula = listaChamadosElemento.insertRow().insertCell();
+        celula.colSpan = 6;
+        celula.className = "text-secondary";
+        celula.textContent = "Nenhum chamado neste status.";
+    }
+
     // Cria uma linha para cada chamado encontrado.
     filtrados.forEach(function(chamado) {
         const linha = document.createElement("tr");
+        linha.id = "chamado-" + chamado.id;
 
         const colunaNumero = document.createElement("th");
+        colunaNumero.scope = "row";
         colunaNumero.textContent = "#" + chamado.id;
 
         const colunaNome = document.createElement("td");
@@ -27,11 +43,11 @@ function listarPorStatus() {
         const colunaEquipamento = document.createElement("td");
         colunaEquipamento.textContent = chamado.equipamento;
 
-        const colunaProblema = document.createElement("td");
-        colunaProblema.textContent = chamado.problema;
-
-        const colunaData = document.createElement("td");
-        colunaData.textContent = chamado.data;
+        const colunaStatus = document.createElement("td");
+        const badge = document.createElement("span");
+        badge.className = "badge";
+        preencherStatus(badge, chamado.status);
+        colunaStatus.appendChild(badge);
 
         // Adiciona o link para ver os detalhes.
         const colunaAcoes = document.createElement("td");
@@ -43,7 +59,7 @@ function listarPorStatus() {
         linkDetalhes.className = "btn btn-sm btn-outline-primary";
 
         colunaAcoes.appendChild(linkDetalhes);
-        linha.append(colunaNumero, colunaNome, colunaSetor, colunaEquipamento, colunaProblema, colunaData, colunaAcoes);
+        linha.append(colunaNumero, colunaNome, colunaSetor, colunaEquipamento, colunaStatus, colunaAcoes);
         listaChamadosElemento.appendChild(linha);
     });
 }
