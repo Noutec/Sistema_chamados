@@ -1,68 +1,35 @@
-// Carrega os chamados e identifica qual foi escolhido.
-const containerDetalhe = document.querySelector("#detalhe-chamado");
-let chamados = JSON.parse(localStorage.getItem("chamados")) || [];
+const chamados = lerChamados();
+const chamado = chamados && buscarChamado(chamados);
 
-// Procura o chamado pelo número recebido no endereço da página.
-const parametros = new URLSearchParams(window.location.search);
-const idChamado = Number(parametros.get("id"));
+if (chamado) {
+    const prioridades = { baixa: "Baixa", media: "Média", alta: "Alta" };
+    const categorias = { hardware: "Hardware", software: "Software", rede: "Rede", outros: "Outros" };
 
-const indice = chamados.findIndex(function(c) {
-    return c.id === idChamado;
-});
+    document.querySelector("#numero-chamado").textContent = "Chamado #" + chamado.id;
+    preencherStatus(document.querySelector("#detalhe-status"), chamado.status);
+    const campos = {
+        nome: chamado.nome,
+        setor: chamado.setor,
+        equipamento: chamado.equipamento,
+        prioridade: prioridades[chamado.prioridade] || "Não informada",
+        categoria: categorias[chamado.categoria] || "Não informada",
+        problema: chamado.problema,
+        data: chamado.data,
+        prazo: mostrarPrazo(chamado),
+        tecnico: chamado.tecnico || "Sem técnico definido",
+        solucao: chamado.solucao || "Sem solução registrada"
+    };
+    for (const [campo, valor] of Object.entries(campos)) {
+        document.getElementById("detalhe-" + campo).textContent = valor;
+    }
 
-// Avisa se o chamado não existir.
-if (indice === -1) {
-    containerDetalhe.innerHTML = "<p>Chamado não encontrado.</p>";
+    document.querySelector("#link-editar").href = "edit.html?id=" + chamado.id;
+    document.querySelector("#link-status").href =
+        situacoes[chamado.status].pagina + ".html#chamado-" + chamado.id;
+    document.querySelector("#detalhe-chamado").hidden = false;
 } else {
-    const chamado = chamados[indice];
-
-    // Mostra as informações do chamado.
-    const card = document.createElement("div");
-    card.className = "card border-0 shadow-sm p-4";
-
-    const titulo = document.createElement("h2");
-    titulo.className = "h4 mb-3";
-    titulo.textContent = "Chamado #" + chamado.id + " - " + chamado.status;
-
-    const pNome = document.createElement("p");
-    pNome.innerHTML = "<strong>Aberto por:</strong> " + chamado.nome;
-
-    const pSetor = document.createElement("p");
-    pSetor.innerHTML = "<strong>Setor:</strong> " + chamado.setor;
-
-    const pEquip = document.createElement("p");
-    pEquip.innerHTML = "<strong>Equipamento:</strong> " + chamado.equipamento;
-
-    const pData = document.createElement("p");
-    pData.innerHTML = "<strong>Data:</strong> " + chamado.data;
-
-    const pTecnico = document.createElement("p");
-    pTecnico.innerHTML = "<strong>Técnico responsável:</strong> " + (chamado.tecnico || "Aguardando atendimento");
-
-    const pProblema = document.createElement("p");
-    pProblema.innerHTML = "<strong>Problema:</strong> " + chamado.problema;
-
-    const pSolucao = document.createElement("p");
-    pSolucao.innerHTML = "<strong>Solução:</strong> " + (chamado.solucao || "Ainda não resolvido");
-
-    // Cria os botões para editar ou voltar à lista.
-    const divBotoes = document.createElement("div");
-    divBotoes.className = "d-flex flex-wrap justify-content-between gap-2 mt-3";
-
-    const divEsquerda = document.createElement("div");
-
-    const linkEditar = document.createElement("a");
-    linkEditar.textContent = "Editar chamado";
-    linkEditar.href = "edit.html?id=" + chamado.id;
-    linkEditar.className = "btn btn-primary me-2";
-
-    const linkVoltar = document.createElement("a");
-    linkVoltar.textContent = "Voltar para todos";
-    linkVoltar.href = "index.html";
-    linkVoltar.className = "btn btn-outline-secondary";
-
-    divEsquerda.append(linkEditar, linkVoltar);
-    divBotoes.append(divEsquerda);
-    card.append(titulo, pNome, pSetor, pEquip, pData, pTecnico, pProblema, pSolucao, divBotoes);
-    containerDetalhe.appendChild(card);
+    const mensagem = document.querySelector("#detalhe-mensagem");
+    mensagem.textContent = chamados ? "Chamado não encontrado." : "Não foi possível carregar o chamado.";
+    mensagem.hidden = false;
+    document.querySelector("#detalhe-voltar").hidden = false;
 }
